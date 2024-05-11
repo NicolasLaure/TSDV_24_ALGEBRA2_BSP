@@ -321,6 +321,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: TRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 3756972557895130099, guid: 67fa2d87122ea684da53bd6c97a93fd6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 6439818155637519716, guid: 67fa2d87122ea684da53bd6c97a93fd6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957277055974407808, guid: 67fa2d87122ea684da53bd6c97a93fd6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901058219244993384, guid: 67fa2d87122ea684da53bd6c97a93fd6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.66
+      objectReference: {fileID: 0}
     - target: {fileID: 8733800192871201278, guid: 67fa2d87122ea684da53bd6c97a93fd6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

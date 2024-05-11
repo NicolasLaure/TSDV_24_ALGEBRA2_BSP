@@ -12,6 +12,32 @@ public class Wall : MonoBehaviour
 
     private void Awake()
     {
-        plane = new Self_Plane(new Vec3(transform.forward), new Vec3(transform.position));
+        plane = new Self_Plane(new Vec3(transform.forward), new Vec3(transform.localPosition));
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying)
+            return;
+
+        Color lowOpacityGreen = Color.green - new Color(0, 0, 0, 0.7f);
+        Gizmos.color = lowOpacityGreen;
+        Gizmos.DrawCube(transform.position, new Vec3(0.5f, 0.5f, 0.5f));
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + plane.Normal);
+
+        if (hasDoor)
+        {
+            Gizmos.color = lowOpacityGreen;
+            float lowerPos = transform.position.y - DOOR_HEIGHT / 2;
+            float upperPos = transform.position.y + DOOR_HEIGHT / 2;
+            Vec3 leftPos = new Vec3(transform.right * DOOR_WIDTH / 2);
+            // Vec3 rightPos = transform.position.x + DOOR_WIDTH / 2;
+
+            Gizmos.DrawLine(new Vec3(transform.position.x, upperPos, transform.position.z) - leftPos, new Vec3(transform.position.x, upperPos, transform.position.z) + leftPos);
+            Gizmos.DrawLine(new Vec3(transform.position.x, lowerPos, transform.position.z) - leftPos, new Vec3(transform.position.x, lowerPos, transform.position.z) + leftPos);
+            Gizmos.DrawLine(new Vec3(transform.position.x, lowerPos, transform.position.z) - leftPos, new Vec3(transform.position.x, upperPos, transform.position.z) - leftPos);
+            Gizmos.DrawLine(new Vec3(transform.position.x, lowerPos, transform.position.z) + leftPos, new Vec3(transform.position.x, upperPos, transform.position.z) + leftPos);
+        }
     }
 }
