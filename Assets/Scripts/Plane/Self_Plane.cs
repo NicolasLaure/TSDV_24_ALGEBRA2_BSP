@@ -5,6 +5,7 @@ using System;
 
 namespace CustomMath
 {
+    [Serializable]
     public struct Self_Plane
     {
         #region Variables
