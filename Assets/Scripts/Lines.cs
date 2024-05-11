@@ -9,6 +9,7 @@ public class Lines : MonoBehaviour
     [SerializeField] int linesQty = 0;
     [SerializeField] float pointRate = 0;
     private List<Line> lines = new List<Line>();
+    public List<Line> LinesList { get { return lines; } }
 
     private void Start()
     {

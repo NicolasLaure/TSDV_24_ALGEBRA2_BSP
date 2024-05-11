@@ -6,6 +6,8 @@ public class Room : MonoBehaviour
 {
     [SerializeField] private List<Room> adjacentRooms = new List<Room>();
     [SerializeField] private List<Wall> walls = new List<Wall>();
+    public List<Wall> Walls { get { return walls; } }
+
 
     public bool shouldBeDrawn = false;
     public bool isChecked = false;
