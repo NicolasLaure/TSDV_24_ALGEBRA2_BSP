@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adjacentRooms: []
-  wallPlanes: []
+  walls: []
 --- !u!1 &5973859462401980076
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3406537005926445511, guid: 10744ac8d92b6d843961862e4d75ac26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.66
       objectReference: {fileID: 0}
     - target: {fileID: 3406537005926445511, guid: 10744ac8d92b6d843961862e4d75ac26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -237,7 +237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3406537005926445511, guid: 10744ac8d92b6d843961862e4d75ac26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.66
       objectReference: {fileID: 0}
     - target: {fileID: 3406537005926445511, guid: 10744ac8d92b6d843961862e4d75ac26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -299,7 +299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 773156739637726806, guid: 6888fcb70d940b34887786114ebd8512, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.66
       objectReference: {fileID: 0}
     - target: {fileID: 773156739637726806, guid: 6888fcb70d940b34887786114ebd8512, type: 3}
       propertyPath: m_LocalPosition.z
@@ -361,7 +361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 773156739637726806, guid: 6888fcb70d940b34887786114ebd8512, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.66
       objectReference: {fileID: 0}
     - target: {fileID: 773156739637726806, guid: 6888fcb70d940b34887786114ebd8512, type: 3}
       propertyPath: m_LocalPosition.z
