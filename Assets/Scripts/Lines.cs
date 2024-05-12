@@ -37,21 +37,6 @@ public class Lines : MonoBehaviour
         UpdateLines();
     }
 
-    private void UpdateLines()
-    {
-        for (int i = 0; i < lines.Count; i++)
-        {
-            Vec3 startPos = new Vec3(transform.position);
-            Vec3 endPos = new Vec3((transform.forward * lineDistance) + transform.right * horizontalAperture * (-linesQty / 2) + i * transform.right * horizontalAperture);
-            lines[i].SetLine(startPos, endPos);
-
-            for (int j = 0; j < lineDistance / pointRate; j++)
-            {
-                Vec3 point = lines[i].startPos + lines[i].endPos * pointRate * j;
-                lines[i].points[j] = point;
-            }
-        }
-    }
 
     private void OnDrawGizmos()
     {
@@ -66,6 +51,22 @@ public class Lines : MonoBehaviour
             for (int i = 0; i < line.points.Count; i++)
             {
                 Gizmos.DrawSphere(line.points[i], 0.1f);
+            }
+        }
+    }
+
+    private void UpdateLines()
+    {
+        for (int i = 0; i < lines.Count; i++)
+        {
+            Vec3 startPos = new Vec3(transform.position);
+            Vec3 endPos = new Vec3((transform.forward * lineDistance) + transform.right * horizontalAperture * (-linesQty / 2) + i * transform.right * horizontalAperture);
+            lines[i].SetLine(startPos, endPos);
+
+            for (int j = 0; j < lineDistance / pointRate; j++)
+            {
+                Vec3 point = lines[i].startPos + lines[i].endPos * pointRate * j;
+                lines[i].points[j] = point;
             }
         }
     }

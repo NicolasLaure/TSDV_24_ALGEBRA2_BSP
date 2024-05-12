@@ -5,7 +5,7 @@ using CustomMath;
 
 public class RoomChecker : MonoBehaviour
 {
-    //[SerializeField] Lines lines;
+    [SerializeField] Lines lines;
 
     Room[] rooms;
     Room currentRoom;
@@ -16,18 +16,38 @@ public class RoomChecker : MonoBehaviour
         {
             room.Hide();
         }
-        CheckCurrentRoom();
     }
-
+    private void Update()
+    {
+        CheckCurrentRoom();
+        foreach (Room room in rooms)
+        {
+            if (room.shouldBeDrawn)
+                room.Show();
+            else
+                room.Hide();
+        }
+    }
     private void CheckCurrentRoom()
     {
-        foreach(Room room in rooms)
+        foreach (Room room in rooms)
         {
             if (room.IsPointInsideRoom(new Vec3(transform.position)))
             {
-                currentRoom = room;
-                currentRoom.Show();
+                room.isChecked = true;
+                room.shouldBeDrawn = true;
+                continue;
             }
+            room.isChecked = false;
+            room.shouldBeDrawn = false;
+        }
+    }
+
+    private void CheckPoints()
+    {
+        foreach (Line line in lines.LinesList)
+        {
+
         }
     }
 }
