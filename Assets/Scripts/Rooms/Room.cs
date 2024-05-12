@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using CustomMath;
 public class Room : MonoBehaviour
 {
     [SerializeField] private List<Room> adjacentRooms = new List<Room>();
@@ -11,7 +11,7 @@ public class Room : MonoBehaviour
 
     public bool shouldBeDrawn = false;
     public bool isChecked = false;
-    private void Start()
+    private void Awake()
     {
         foreach (Wall wall in transform.GetComponentsInChildren<Wall>())
         {
@@ -33,5 +33,15 @@ public class Room : MonoBehaviour
         {
             mesh.enabled = false;
         }
+    }
+
+    public bool IsPointInsideRoom(Vec3 point)
+    {
+        for (int i = 0; i < walls.Count; i++)
+        {
+            if (!walls[i].IsPointOnPositiveSide(point))
+                return false;
+        }
+        return true;
     }
 }

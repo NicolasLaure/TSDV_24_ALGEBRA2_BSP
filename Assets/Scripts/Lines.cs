@@ -11,7 +11,7 @@ public class Lines : MonoBehaviour
     private List<Line> lines = new List<Line>();
     public List<Line> LinesList { get { return lines; } }
 
-    private void Start()
+    private void Awake()
     {
         for (int i = 0; i < linesQty; i++)
         {

@@ -51,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   adjacentRooms: []
   walls: []
+  shouldBeDrawn: 0
+  isChecked: 0
 --- !u!1 &5973859462401980076
 GameObject:
   m_ObjectHideFlags: 0
