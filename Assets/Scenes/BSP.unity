@@ -208,6 +208,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7553611058049938918, guid: 75e3bb08f32f61149b6830902ca3c0a3, type: 3}
+      propertyPath: adjacentRooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7553611058049938918, guid: 75e3bb08f32f61149b6830902ca3c0a3, type: 3}
+      propertyPath: adjacentRooms.Array.data[0]
+      value: 
+      objectReference: {fileID: 1018794924}
     - target: {fileID: 8733800192871201278, guid: 75e3bb08f32f61149b6830902ca3c0a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -612,7 +620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5599402c55586944bba212e8c4056faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lines: {fileID: 0}
+  lines: {fileID: 1265398596}
 --- !u!1001 &1282026258
 PrefabInstance:
   m_ObjectHideFlags: 0
