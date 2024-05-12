@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-
 namespace CustomMath
 {
-    public class Line
+    public class Line 
     {
         public Vec3 startPos;
         public Vec3 endPos;

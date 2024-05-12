@@ -20,7 +20,11 @@ public class RoomChecker : MonoBehaviour
     private void Update()
     {
         CheckCurrentRoom();
-        CheckLines();
+        if (currentRoom != null)
+        {
+            CheckAdjacentRooms(currentRoom, 0);
+        }
+
         foreach (Room room in rooms)
         {
             if (room.shouldBeDrawn)
@@ -45,14 +49,6 @@ public class RoomChecker : MonoBehaviour
         }
     }
 
-    private void CheckLines()
-    {
-        foreach (Line line in lines.LinesList)
-        {
-            CheckAdjacentRooms(currentRoom, line.points, 0);
-        }
-    }
-    
     public Room RoomAPointIsIn(Vec3 point, List<Room> roomsList)
     {
         foreach (Room room in roomsList)
@@ -62,16 +58,19 @@ public class RoomChecker : MonoBehaviour
         }
         return null;
     }
-    private void CheckAdjacentRooms(Room startingRoom, List<Vec3> points, int startingIndex)
+    private void CheckAdjacentRooms(Room startingRoom, int startingIndex)
     {
-        for (int i = 0; i < points.Count; i++)
+        foreach (Line line in lines.LinesList)
         {
-            Room adjRoom = RoomAPointIsIn(points[i], startingRoom.AdjacentRooms);
-            if (adjRoom != null && !adjRoom.isChecked)
+            for (int i = startingIndex; i < line.points.Count; i++)
             {
-                adjRoom.isChecked = true;
-                adjRoom.shouldBeDrawn = true;
-                CheckAdjacentRooms(adjRoom, points, i);
+                Room adjRoom = RoomAPointIsIn(line.points[i], startingRoom.AdjacentRooms);
+                if (adjRoom != null && !adjRoom.isChecked)
+                {
+                    adjRoom.isChecked = true;
+                    adjRoom.shouldBeDrawn = true;
+                    CheckAdjacentRooms(adjRoom, i);
+                }
             }
         }
     }
