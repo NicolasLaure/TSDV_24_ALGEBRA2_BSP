@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalAperture: 0.5
-  lineDistance: 3
+  lineDistance: 5
   linesQty: 5
   pointRate: 0.3
 --- !u!114 &1265398597
