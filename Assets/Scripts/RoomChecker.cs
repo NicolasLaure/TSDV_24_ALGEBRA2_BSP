@@ -88,4 +88,21 @@ public class RoomChecker : MonoBehaviour
         }
         return null;
     }
+
+    private bool DoesLinePassThroughDoor(Line line, Wall dooredWall)
+    {
+        Vec3 prevPoint = Vec3.Zero;
+        foreach (Vec3 point in line.points)
+        {
+            if (prevPoint != Vec3.Zero && dooredWall.IsPointOnPositiveSide(prevPoint) && !dooredWall.IsPointOnPositiveSide(point))
+            {
+                bool isPrevPointAligned = (prevPoint.x > dooredWall.WallDoor.MinWidth.x && prevPoint.x < dooredWall.WallDoor.MinWidth.x) || (prevPoint.z > dooredWall.WallDoor.MinWidth.z && prevPoint.z < dooredWall.WallDoor.MinWidth.z);
+                bool isPointAligned = (point.x > dooredWall.WallDoor.MinWidth.x && point.x < dooredWall.WallDoor.MinWidth.x) || (point.z > dooredWall.WallDoor.MinWidth.z && point.z < dooredWall.WallDoor.MinWidth.z);
+                if (isPrevPointAligned && isPointAligned)
+                    return true;
+            }
+            prevPoint = point;
+        }
+        return false;
+    }
 }
