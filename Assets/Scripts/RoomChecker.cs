@@ -68,7 +68,7 @@ public class RoomChecker : MonoBehaviour
                 if (adjRoom != null && !adjRoom.isChecked)
                 {
                     Wall wallBetweenRooms = GetWallBetweenRooms(line.points[i], startingRoom);
-                    if (wallBetweenRooms && wallBetweenRooms.HasDoor)
+                    if (wallBetweenRooms && wallBetweenRooms.HasDoor && DoesLinePassThroughDoor(line, wallBetweenRooms))
                     {
                         adjRoom.isChecked = true;
                         adjRoom.shouldBeDrawn = true;
@@ -96,8 +96,14 @@ public class RoomChecker : MonoBehaviour
         {
             if (prevPoint != Vec3.Zero && dooredWall.IsPointOnPositiveSide(prevPoint) && !dooredWall.IsPointOnPositiveSide(point))
             {
-                bool isPrevPointAligned = (prevPoint.x > dooredWall.WallDoor.MinWidth.x && prevPoint.x < dooredWall.WallDoor.MinWidth.x) || (prevPoint.z > dooredWall.WallDoor.MinWidth.z && prevPoint.z < dooredWall.WallDoor.MinWidth.z);
-                bool isPointAligned = (point.x > dooredWall.WallDoor.MinWidth.x && point.x < dooredWall.WallDoor.MinWidth.x) || (point.z > dooredWall.WallDoor.MinWidth.z && point.z < dooredWall.WallDoor.MinWidth.z);
+                Vec3 doorLeftPos = new Vec3(dooredWall.transform.right * dooredWall.DoorWidth / 2);
+
+                bool isPrevPointAligned = (prevPoint.x > (dooredWall.transform.position - doorLeftPos).x && prevPoint.x < (dooredWall.transform.position + doorLeftPos).x) ||
+                                          (prevPoint.z > (dooredWall.transform.position - doorLeftPos).z && prevPoint.z < (dooredWall.transform.position + doorLeftPos).z);
+
+                bool isPointAligned = (point.x > (dooredWall.transform.position - doorLeftPos).x && point.x < (dooredWall.transform.position + doorLeftPos).x) ||
+                                      (point.z > (dooredWall.transform.position - doorLeftPos).z && point.z < (dooredWall.transform.position + doorLeftPos).z);
+
                 if (isPrevPointAligned && isPointAligned)
                     return true;
             }

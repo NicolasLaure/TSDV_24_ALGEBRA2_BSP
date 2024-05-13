@@ -8,13 +8,14 @@ public class Wall : MonoBehaviour
     const int DOOR_WIDTH = 2;
     const int DOOR_HEIGHT = 4;
     private Self_Plane plane;
-    private Rect doorOpening;
     [SerializeField] private bool hasDoor;
     //  public Self_Plane Plane { get { return plane; } }
     public bool HasDoor { get { return hasDoor; } }
+    public int DoorWidth { get { return DOOR_WIDTH; } }
     private void Awake()
     {
         plane = new Self_Plane(new Vec3(transform.forward), new Vec3(-transform.position));
+        // WallDoor = new Door(new Vec3(transform.position), new Vec3(-transform.right * (DOOR_WIDTH / 2)), new Vec3(transform.right * (DOOR_WIDTH / 2)));
     }
 
     private void OnDrawGizmos()
@@ -48,5 +49,19 @@ public class Wall : MonoBehaviour
     public bool IsPointOnPositiveSide(Vec3 point)
     {
         return plane.GetSide(point);
+    }
+}
+
+public class Door
+{
+    private Vec3 minWidth;
+    private Vec3 maxWidth;
+    public Vec3 MinWidth { get; }
+    public Vec3 MaxWidth { get; }
+
+    public Door(Vec3 position, Vec3 minWidth, Vec3 maxWidth)
+    {
+        this.minWidth = minWidth;
+        this.maxWidth = maxWidth;
     }
 }
