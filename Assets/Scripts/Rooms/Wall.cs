@@ -7,10 +7,11 @@ public class Wall : MonoBehaviour
 {
     const int DOOR_WIDTH = 2;
     const int DOOR_HEIGHT = 4;
-    [SerializeField] private bool hasDoor;
     private Self_Plane plane;
+    private Rect doorOpening;
+    [SerializeField] private bool hasDoor;
     //  public Self_Plane Plane { get { return plane; } }
-
+    public bool HasDoor { get { return hasDoor; } }
     private void Awake()
     {
         plane = new Self_Plane(new Vec3(transform.forward), new Vec3(-transform.position));

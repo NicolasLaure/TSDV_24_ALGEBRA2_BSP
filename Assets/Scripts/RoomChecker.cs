@@ -67,11 +67,25 @@ public class RoomChecker : MonoBehaviour
                 Room adjRoom = RoomAPointIsIn(line.points[i], startingRoom.AdjacentRooms);
                 if (adjRoom != null && !adjRoom.isChecked)
                 {
-                    adjRoom.isChecked = true;
-                    adjRoom.shouldBeDrawn = true;
-                    CheckAdjacentRooms(adjRoom, i);
+                    Wall wallBetweenRooms = GetWallBetweenRooms(line.points[i], startingRoom);
+                    if (wallBetweenRooms && wallBetweenRooms.HasDoor)
+                    {
+                        adjRoom.isChecked = true;
+                        adjRoom.shouldBeDrawn = true;
+                        CheckAdjacentRooms(adjRoom, i);
+                    }
                 }
             }
         }
+    }
+
+    private Wall GetWallBetweenRooms(Vec3 point, Room currentRoom)
+    {
+        foreach (Wall wall in currentRoom.Walls)
+        {
+            if (!wall.IsPointOnPositiveSide(point))
+                return wall;
+        }
+        return null;
     }
 }
