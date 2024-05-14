@@ -7,17 +7,20 @@ public class Lines : MonoBehaviour
     [SerializeField] float horizontalAperture = 0;
     [SerializeField] int lineDistance = 0;
     [SerializeField] int linesQty = 0;
+    [SerializeField] int horizontalLinesQty = 0;
     [SerializeField] float pointRate = 0;
     private List<Line> lines = new List<Line>();
     public List<Line> LinesList { get { return lines; } }
 
     private void Awake()
     {
-        for (int i = 0; i < linesQty; i++)
+        for (int i = 0; i < horizontalLinesQty; i++)
         {
             Vec3 startPos = new Vec3(transform.position);
-            //Vec3 startPos = new Vec3(transform.forward + (-transform.right + transform.right * i));
-            Vec3 endPos = new Vec3((transform.forward * lineDistance) + transform.right * horizontalAperture * (-linesQty / 2) + i * transform.right * horizontalAperture);
+            Vec3 endPosForward = new Vec3(transform.forward * lineDistance);
+            Vec3 endPosRight = new Vec3(transform.right * horizontalAperture * (-horizontalLinesQty / 2) + i * transform.right * horizontalAperture);
+
+            Vec3 endPos = new Vec3(endPosForward + endPosRight);
             endPos.Normalize();
             lines.Add(new Line(startPos, endPos));
         }
@@ -60,7 +63,10 @@ public class Lines : MonoBehaviour
         for (int i = 0; i < lines.Count; i++)
         {
             Vec3 startPos = new Vec3(transform.position);
-            Vec3 endPos = new Vec3((Camera.main.transform.forward * lineDistance) + Camera.main.transform.right * horizontalAperture * (-linesQty / 2) + i * Camera.main.transform.right * horizontalAperture);
+            Vec3 endPosForward = new Vec3(Camera.main.transform.forward * lineDistance);
+            Vec3 endPosRight = new Vec3(Camera.main.transform.right * horizontalAperture * (-horizontalLinesQty / 2) + i * Camera.main.transform.right * horizontalAperture);
+
+            Vec3 endPos = new Vec3(endPosForward + endPosRight);
             lines[i].SetLine(startPos, endPos);
 
             for (int j = 0; j < lineDistance / pointRate; j++)
