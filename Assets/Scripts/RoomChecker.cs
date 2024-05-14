@@ -100,9 +100,11 @@ public class RoomChecker : MonoBehaviour
                 Vec3 doorLeftPos = new Vec3(dooredWall.transform.right * dooredWall.DoorWidth / 2);
                 Vec3 middlePoint = (point + prevPoint) / 2;
                 bool isPointAligned = (middlePoint.x > (dooredWall.transform.position - doorLeftPos).x && middlePoint.x < (dooredWall.transform.position + doorLeftPos).x) ||
-                                     (middlePoint.z > (dooredWall.transform.position - doorLeftPos).z && middlePoint.z < (dooredWall.transform.position + doorLeftPos).z);
-                if (isPointAligned)
-                    return true;
+                                     (middlePoint.x < (dooredWall.transform.position - doorLeftPos).x && middlePoint.x > (dooredWall.transform.position + doorLeftPos).x) ||
+                                     (middlePoint.z > (dooredWall.transform.position - doorLeftPos).z && middlePoint.z < (dooredWall.transform.position + doorLeftPos).z) ||
+                                     (middlePoint.z < (dooredWall.transform.position - doorLeftPos).z && middlePoint.z > (dooredWall.transform.position + doorLeftPos).z);
+
+                return isPointAligned;
             }
             prevPoint = point;
         }
