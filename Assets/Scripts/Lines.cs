@@ -60,7 +60,7 @@ public class Lines : MonoBehaviour
         for (int i = 0; i < lines.Count; i++)
         {
             Vec3 startPos = new Vec3(transform.position);
-            Vec3 endPos = new Vec3((transform.forward * lineDistance) + transform.right * horizontalAperture * (-linesQty / 2) + i * transform.right * horizontalAperture);
+            Vec3 endPos = new Vec3((Camera.main.transform.forward * lineDistance) + Camera.main.transform.right * horizontalAperture * (-linesQty / 2) + i * Camera.main.transform.right * horizontalAperture);
             lines[i].SetLine(startPos, endPos);
 
             for (int j = 0; j < lineDistance / pointRate; j++)
