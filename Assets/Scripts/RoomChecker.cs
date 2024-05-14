@@ -61,19 +61,22 @@ public class RoomChecker : MonoBehaviour
     }
     private void CheckAdjacentRooms(Room startingRoom, int startingIndex)
     {
-        foreach (Line line in lines.LinesList)
+        foreach (List<Line> lines in lines.LinesList)
         {
-            for (int i = startingIndex; i < line.points.Count; i++)
+            foreach (Line line in lines)
             {
-                Room adjRoom = RoomAPointIsIn(line.points[i], startingRoom.AdjacentRooms);
-                if (adjRoom != null && !adjRoom.isChecked)
+                for (int i = startingIndex; i < line.points.Count; i++)
                 {
-                    Wall wallBetweenRooms = GetWallBetweenRooms(line.points[i], startingRoom);
-                    if (wallBetweenRooms && wallBetweenRooms.HasDoor && DoesLinePassesThroughAllDoors(line))
+                    Room adjRoom = RoomAPointIsIn(line.points[i], startingRoom.AdjacentRooms);
+                    if (adjRoom != null && !adjRoom.isChecked)
                     {
-                        adjRoom.isChecked = true;
-                        adjRoom.shouldBeDrawn = true;
-                        CheckAdjacentRooms(adjRoom, i);
+                        Wall wallBetweenRooms = GetWallBetweenRooms(line.points[i], startingRoom);
+                        if (wallBetweenRooms && wallBetweenRooms.HasDoor && DoesLinePassesThroughAllDoors(line))
+                        {
+                            adjRoom.isChecked = true;
+                            adjRoom.shouldBeDrawn = true;
+                            CheckAdjacentRooms(adjRoom, i);
+                        }
                     }
                 }
             }
