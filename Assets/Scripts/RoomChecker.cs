@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CustomMath;
+using System.Linq;
 
 public class RoomChecker : MonoBehaviour
 {
@@ -68,7 +69,7 @@ public class RoomChecker : MonoBehaviour
                 if (adjRoom != null && !adjRoom.isChecked)
                 {
                     Wall wallBetweenRooms = GetWallBetweenRooms(line.points[i], startingRoom);
-                    if (wallBetweenRooms && wallBetweenRooms.HasDoor && DoesLinePassThroughDoor(line, wallBetweenRooms))
+                    if (wallBetweenRooms && wallBetweenRooms.HasDoor && DoesLinePassesThroughAllDoors(line))
                     {
                         adjRoom.isChecked = true;
                         adjRoom.shouldBeDrawn = true;
@@ -106,5 +107,33 @@ public class RoomChecker : MonoBehaviour
             prevPoint = point;
         }
         return false;
+    }
+
+    private bool DoesLinePassesThroughAllDoors(Line line)
+    {
+        List<Wall> intermediateWalls = new List<Wall>();
+        Room prevRoom = currentRoom;
+        foreach (Vec3 point in line.points)
+        {
+            Room roomPointIsIn = RoomAPointIsIn(point, rooms.ToList());
+            if (roomPointIsIn && roomPointIsIn != prevRoom)
+            {
+                Wall wallBetween = GetWallBetweenRooms(point, prevRoom);
+                if (wallBetween && wallBetween.HasDoor)
+                {
+                    intermediateWalls.Add(wallBetween);
+                    prevRoom = roomPointIsIn;
+                }
+                else
+                    return false;
+            }
+        }
+
+        foreach (Wall wall in intermediateWalls)
+        {
+            if (!wall.HasDoor || !DoesLinePassThroughDoor(line, wall))
+                return false;
+        }
+        return true;
     }
 }
