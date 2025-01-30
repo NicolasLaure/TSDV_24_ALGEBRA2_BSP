@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using CustomMath;
 using System.Linq;
+using CustomMath;
+using UnityEngine;
 
 public class RoomChecker : MonoBehaviour
 {
