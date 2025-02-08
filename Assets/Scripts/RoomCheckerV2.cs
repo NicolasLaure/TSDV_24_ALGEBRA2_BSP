@@ -96,7 +96,7 @@ public class RoomCheckerV2 : MonoBehaviour
             if (!adjRoom.isChecked)
             {
                 Wall wallBetweenRooms = GetWallBetweenRooms(middlePos, referenceRoom);
-                if (wallBetweenRooms && wallBetweenRooms.HasDoor && DoesLinePassesThroughAllDoors(new Line(startPos, middlePos)))
+                if (wallBetweenRooms && wallBetweenRooms.HasDoor && DoesLinePassThroughDoor(new Line(startPos, middlePos), wallBetweenRooms))
                 {
                     adjRoom.isChecked = true;
                     adjRoom.shouldBeDrawn = true;
@@ -122,6 +122,12 @@ public class RoomCheckerV2 : MonoBehaviour
     private bool DoesLinePassThroughDoor(Line line, Wall dooredWall)
     {
         Vec3 prevPoint = Vec3.Zero;
+        if (line.points.Count == 0)
+        {
+            line.points.Add(line.startPos);
+            line.points.Add(line.endPos);
+        }
+
         foreach (Vec3 point in line.points)
         {
             if (prevPoint != Vec3.Zero && dooredWall.IsPointOnPositiveSide(prevPoint) && !dooredWall.IsPointOnPositiveSide(point))
