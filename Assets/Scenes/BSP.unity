@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -745,11 +744,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1265398595}
   - component: {fileID: 1265398596}
-  - component: {fileID: 1265398597}
   - component: {fileID: 1265398599}
   - component: {fileID: 1265398598}
   - component: {fileID: 1265398600}
   - component: {fileID: 1265398601}
+  - component: {fileID: 1265398602}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -787,23 +786,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalAperture: 0.5
   verticalAperture: 1
-  lineDistance: 7
+  lineDistance: 15
   horizontalLinesQty: 21
   verticalLinesQty: 1
-  pointRate: 0.3
---- !u!114 &1265398597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265398594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5599402c55586944bba212e8c4056faa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lines: {fileID: 1265398596}
 --- !u!114 &1265398598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -868,6 +853,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1265398602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265398594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 750aff7f8cda1ab4ab2249a2af46e7d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines: {fileID: 1265398596}
+  steps: 7
 --- !u!114 &1405029337 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7553611058049938918, guid: 75e3bb08f32f61149b6830902ca3c0a3, type: 3}
