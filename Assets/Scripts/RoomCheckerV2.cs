@@ -93,18 +93,13 @@ public class RoomCheckerV2 : MonoBehaviour
             if (adjRoom == null)
                 return;
 
-            if (!adjRoom.isChecked)
+            Wall wallBetweenRooms = GetWallBetweenRooms(middlePos, referenceRoom);
+            if (wallBetweenRooms && wallBetweenRooms.HasDoor && DoesLinePassThroughDoor(new Line(startPos, middlePos), wallBetweenRooms))
             {
-                Wall wallBetweenRooms = GetWallBetweenRooms(middlePos, referenceRoom);
-                if (wallBetweenRooms && wallBetweenRooms.HasDoor && DoesLinePassThroughDoor(new Line(startPos, middlePos), wallBetweenRooms))
-                {
-                    adjRoom.isChecked = true;
-                    adjRoom.shouldBeDrawn = true;
-                }
-            }
-
-            if (adjRoom.isChecked)
+                adjRoom.isChecked = true;
+                adjRoom.shouldBeDrawn = true;
                 CheckLine(adjRoom, line, middlePos, line.endPos, stepsCount - 1);
+            }
         }
     }
 
